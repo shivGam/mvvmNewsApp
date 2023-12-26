@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.androiddevs.mvvmnewsapp.R
 import com.androiddevs.mvvmnewsapp.adapters.NewsAdapter
@@ -20,6 +21,16 @@ class LiveFeedFragment: Fragment(R.layout.fragment_live_feed) {
         super.onViewCreated(view, savedInstanceState)
         viewModel=(activity as NewsActivity).viewModel
         setupRV()
+
+        newsAdapter.setOnItemClickListener { article->
+            val bundle = Bundle().apply {
+                putSerializable("article", article)
+            }
+            findNavController().navigate(
+                R.id.action_liveFeedFragment_to_articleNewsFragment,
+                bundle
+            )
+        }
 
         viewModel.liveFeed.observe(viewLifecycleOwner, Observer { response->
             when(response){
