@@ -3,6 +3,7 @@ package com.androiddevs.mvvmnewsapp.Repository
 import androidx.room.Query
 import com.androiddevs.mvvmnewsapp.api.RetrofitInstance
 import com.androiddevs.mvvmnewsapp.database.ArticleDatabase
+import com.androiddevs.mvvmnewsapp.models.Article
 import java.util.Locale.IsoCountryCode
 
 class NewsRepository (
@@ -14,4 +15,10 @@ class NewsRepository (
 
     suspend fun getSearchNews(searchQuery:String,pageNumber:Int)=
         RetrofitInstance.api.getSearchNews(searchQuery,pageNumber)
+
+    suspend fun upsert(article: Article)= db.getArticleDao().upsert(article)
+
+    fun getSavedNews() = db.getArticleDao().getAllArticles()
+
+    suspend fun deleteArticle(article: Article)= db.getArticleDao().delete(article)
 }

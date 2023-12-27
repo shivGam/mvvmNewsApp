@@ -39,6 +39,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_liveFeedFragment_to_savedNewsFragment"
+            app:destination="@id/savedNewsFragment" />
     </fragment>
     <fragment
         android:id="@+id/articleNewsFragment"
@@ -51,5 +54,8 @@
         <argument
             android:name="article"
             app:argType="com.androiddevs.mvvmnewsapp.models.Article" />
+        <action
+            android:id="@+id/action_articleNewsFragment_to_savedNewsFragment"
+            app:destination="@id/savedNewsFragment" />
     </fragment>
 </navigation>
