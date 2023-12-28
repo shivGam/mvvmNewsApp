@@ -3,7 +3,6 @@ package com.androiddevs.mvvmnewsapp.userinterface
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.room.Query
 import com.androiddevs.mvvmnewsapp.Repository.NewsRepository
 import com.androiddevs.mvvmnewsapp.models.Article
 import com.androiddevs.mvvmnewsapp.models.NewsResponse
@@ -17,9 +16,11 @@ class NewsViewModel(
 
     val liveFeed : MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var liveFeedPage = 1
+    var liveFeedResponse:NewsResponse ?=null
 
     val searchNews : MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var searchNewsPage = 1
+    var searchNewsResponse:NewsResponse ?=null
 
     init{
         getLiveFeed("in")
@@ -45,7 +46,16 @@ class NewsViewModel(
     private fun handleLiveFeedResponse(response: Response<NewsResponse>) : Resource<NewsResponse> {
         if(response.isSuccessful){
             response.body()?.let{ resultResponse ->
-                return Resource.Success(resultResponse)
+                liveFeedPage++
+                if(liveFeedResponse == null){
+                    liveFeedResponse= resultResponse
+                }
+                else{
+                    val oldArticles = liveFeedResponse?.articles
+                    val newArticles = resultResponse.articles
+                    oldArticles?.addAll(newArticles)
+                }
+                return Resource.Success(liveFeedResponse ?: resultResponse)
             }
         }
         return Resource.Error(response.message())

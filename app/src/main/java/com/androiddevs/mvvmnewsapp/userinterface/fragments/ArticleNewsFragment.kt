@@ -26,6 +26,7 @@ class ArticleNewsFragment: Fragment(R.layout.fragment_article) {
             webViewClient = WebViewClient()
             //settings.javaScriptEnabled = true  website use js to show ads
             loadUrl(article.url)
+
         }
         fab.setOnClickListener{
             viewModel.saveArticle(article)
