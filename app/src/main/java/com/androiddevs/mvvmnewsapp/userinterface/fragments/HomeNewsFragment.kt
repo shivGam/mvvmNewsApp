@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AbsListView
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -70,7 +71,7 @@ class HomeNewsFragment: Fragment(R.layout.fragment_home_news) {
                 is Resource.Error ->{
                     hideProgressBar()
                     response.message?.let{
-                        Log.e("Home Page","Error: $it ")
+                        Toast.makeText(activity,"Error: $it",Toast.LENGTH_LONG).show()
                     }
                 }
                 is Resource.Loading ->{
