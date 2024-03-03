@@ -22,6 +22,6 @@
 
 # Contributors
 
-- **Shivdatt Jangam**: Lead developer ([GitHub](https://github.com/shivdatt1999))
+- **Shivdatt Jangam**: [GitHub](https://github.com/shivdatt1999)
 - **Special Thanks**: [Philip Lackner](https://www.youtube.com/@PhilippLackner) 
 
