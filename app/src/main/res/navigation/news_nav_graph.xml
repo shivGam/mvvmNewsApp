@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/news_nav_graph"
+    app:startDestination="@id/homeNewsFragment">
+
+    <fragment
+        android:id="@+id/homeNewsFragment"
+        android:name="com.androiddevs.mvvmnewsapp.userinterface.fragments.HomeNewsFragment"
+        android:label="HomeNewsFragment" >
+        <action
+            android:id="@+id/action_homeNewsFragment_to_articleNewsFragment"
+            app:destination="@id/articleNewsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/savedNewsFragment"
+        android:name="com.androiddevs.mvvmnewsapp.userinterface.fragments.SavedNewsFragment"
+        android:label="SavedNewsFragment" >
+        <action
+            android:id="@+id/action_savedNewsFragment_to_articleNewsFragment"
+            app:destination="@id/articleNewsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/liveFeedFragment"
+        android:name="com.androiddevs.mvvmnewsapp.userinterface.fragments.LiveFeedFragment"
+        android:label="LiveFeedFragment" >
+        <action
+            android:id="@+id/action_liveFeedFragment_to_articleNewsFragment"
+            app:destination="@id/articleNewsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_liveFeedFragment_to_savedNewsFragment"
+            app:destination="@id/savedNewsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/articleNewsFragment"
+        android:name="com.androiddevs.mvvmnewsapp.userinterface.fragments.ArticleNewsFragment"
+        android:label="ArticleNewsFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right">
+        <argument
+            android:name="article"
+            app:argType="com.androiddevs.mvvmnewsapp.models.Article" />
+        <action
+            android:id="@+id/action_articleNewsFragment_to_savedNewsFragment"
+            app:destination="@id/savedNewsFragment" />
+    </fragment>
+</navigation>
